@@ -117,13 +117,15 @@ class neko_trainer_agent(neko_abstract_async_agent):
                     # since agents are stateless, we are not building an agent pool here,
                     # if you do want to share, put them in a module and have the agents associated to call the module.
 
-            this.tester_dict[k].take_action_multibatch(None,this.environment,bs)
+            rd=this.tester_dict[k].take_action_multibatch(None,this.environment,bs)
             if (k in this.post_test_names):
                 # what if we have some stats you say? put it into the environment!
                 # Specifically, you put whatever you want to store for more than one iter
                    # into neko_environment.assets_dict
                 for pk in this.pre_test_names[k]:
                     this.post_test_dict[k][pk].take_action(None, this.environment);
+            return rd;
+
 
     def dbg_core(this):
         for k in this.tester_dict:
@@ -155,8 +157,9 @@ class neko_trainer_agent(neko_abstract_async_agent):
             this.environment.modset.train_mode();
     def eval(this,bs=160):
         this.eval_mode();
-        this.check(bs);
+        rd=this.check(bs);
         this.train_mode();
+        return rd;
     def dumpcache(this,path):
         this.eval_mode();
         this.dump(path);

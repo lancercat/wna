@@ -33,6 +33,19 @@ class reporter_core:
             );
         except:
             pass;
+        if (this.tot == 0):
+            return None;  # Athena;
+        return {
+            "Date": datetime.datetime.now(),
+            "TEST": this.name,
+            "Epoch": eidx,
+            "Iter": bidx,
+            "Total": this.tot,
+            "ACR": this.corr / this.tot,
+            "Lenpred_ACR": this.lcorr / this.tot,
+            "FPS": this.tot / (time.time() - this.start_time)
+        };
+
     def __init__(this):
         pass;
 

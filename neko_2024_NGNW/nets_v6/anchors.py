@@ -73,6 +73,14 @@ def get_wna_v6_32_anchor_1h1v1r_nedmix():
     acfg = dan_only_nedmix(acfg, "rect_", 1, 32 ,64,64 , 0.3, 3); # that's our best bet already:)
     return acfg;
 
+def get_wna_v6_32_anchor_1h1v1r():
+    acfg={
+        AK6.beacon_size_wh: (32, 32),
+        AK6.names:[]};
+    acfg=dan_only(acfg,"hori_",1, 32, 24, 96, 1, 9999);
+    acfg = dan_only(acfg, "vert_", 1, 32, 96, 24, -9999, 1);
+    acfg = dan_only(acfg, "rect_", 1, 32 ,64,64 , 0.3, 3); # that's our best bet already:)
+    return acfg;
 
 def get_wna_v6_32_anchor_1h1v1r_nedmix_reg():
     acfg={

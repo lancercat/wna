@@ -62,7 +62,8 @@ class case_inv_acr_fps_reporter(neko_module_wrapping_agent):
         #     print(gt.lower(), "->", pr.lower());
 
     def report(this,environment:neko_environment):
-        this.recorder.report(environment.epoch_idx,environment.batch_idx);
+        rpt=this.recorder.report(environment.epoch_idx,environment.batch_idx);
+        return rpt;
 
 
 class case_inv_multi_orientation_acr_fps_reporter(neko_module_wrapping_agent):

@@ -111,8 +111,11 @@ class neko_abstract_mission_agent(neko_abstract_sync_agent):
                 this.tester.take_action(workspace, environment);
                 for r in this.reporters:
                     this.reporters[r].take_action(workspace, environment);
+            rd={};
             for r in this.reporters:
-                this.reporters[r].report(environment);
+                rd[r]=this.reporters[r].report(environment);
+            return rd;
+
     def take_action(this, _: neko_workspace, environment: neko_environment):
         protodict=this.cache_protos(environment);
         for test in this.tests[this.PARAM_test_benches]:
@@ -134,6 +137,7 @@ class neko_abstract_mission_agent(neko_abstract_sync_agent):
                 this.tester.take_action(workspace, environment);
                 for r in this.reporters:
                     this.reporters[r].take_action(workspace, environment);
+            rd={};
             for r in this.reporters:
                 this.reporters[r].report(environment);
 

@@ -440,20 +440,10 @@ class neko_wna_v6_base_no_pad(neko_wna_v6_base):
                 # To have some margins help recognition--- independently mentioned by Chenlvs, Simon
             },None);
         return modcfgdict,bogo_dict;
-class neko_wna_v6XL_base_no_pad(neko_wna_v6_base_no_pad):
-    expf = 1.5;
-class neko_wna_v6XL_lang_base_no_pad(neko_wna_v6_base_no_pad):
-    expf = 1.5;
-    def config_for_testing(this,modcfgdict,bogo_dict, module_anchor_config, prefix=""):
-        return this.config_core_modules(modcfgdict,bogo_dict, module_anchor_config, prefix);
-
-    # why having global prefix you ask?
-    # Well if you want to implement FL via project hanazo then you will find them useful :-)
-    def config_for_training(this,modcfgdict,bogo_dict, module_anchor_config,metapath, prefix=""):
-        actual_deploy_anchor_config=make_deploy_anchor(module_anchor_config);
-        modcfgdict,bogo_dict= this.config_core_modules(modcfgdict,bogo_dict,actual_deploy_anchor_config,prefix);
-        return this.config_training_extra(modcfgdict,bogo_dict,actual_deploy_anchor_config,metapath,prefix);
-    def config_for_testing(this,modcfgdict,bogo_dict, module_anchor_config, prefix=""):
-        return this.config_core_modules(modcfgdict,bogo_dict, module_anchor_config, prefix);
 
 
+class neko_wna_v6_base_no_pad_promelas(neko_wna_v6_base_no_pad):
+    # note it has a fatter head (32->64) and hence the name.
+    def get_fe_ochs(this,expf):
+        return [int(64 * expf), int(64 * expf), int(128 * expf), int(256 * expf), int(512 * expf),
+                                      int(this.feat_ch_model)];
