@@ -76,7 +76,7 @@ class neko_balance_fetching_and_mixing_agent(neko_abstract_async_agent):
         if ("indexer" not in param):
             try:
                 print("loading anchor index",this.ancidx_path);
-                this.ancidx=torch.load(this.ancidx_path);
+                this.ancidx=torch.load(this.ancidx_path,weights_only=False);
                 print("anchor index loaded");
 
             except:
