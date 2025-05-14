@@ -30,8 +30,8 @@ class neko_perfect_match_flair_making_agent(neko_module_wrapping_agent):
             pred_flair = np.zeros([32, 32, 3], dtype=np.uint8);
 
             if(text_label is not None):
-                feas = 1 - min(1, editdistance.eval(pred_text[i], text_label[i]) / len(text_label[i]));
-                if (text_label[i] == pred_text[i]):
+                feas = 1 - min(1, editdistance.eval(pred_text[i].lower(), text_label[i].lower()) / len(text_label[i]));
+                if (text_label[i].lower() == pred_text[i].lower()):
                     pred_flair[:, :, 1] = 255;
                 else:
                     pred_flair[:, :, -1] = 255;

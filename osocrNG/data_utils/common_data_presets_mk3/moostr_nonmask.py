@@ -733,6 +733,7 @@ class moostr_mk3_data_factory(abstract_mk3_data_factory):
                                               );
         tedd=cls.get_osocr_test_310(data_root,-9);
         return trad,trqd,trm,tedd;
+
     @classmethod
     def get_mk3_benchmark_release(cls,data_root,anchor_dict,queue_name):
         trad, trqd = {}, {};

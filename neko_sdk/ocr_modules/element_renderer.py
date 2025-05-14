@@ -68,7 +68,7 @@ def render_pred(dict,gt_word,pred_word):
     pred_patchs=[];
     flag=True;
     if(gt_word is not None):
-        corids=pylcs.lcs_str2id(gt_word, pred_word)
+        corids=pylcs.lcs_str2id(gt_word.lower(), pred_word.lower())
     else:
         flag=False;
         corids=set(range(len(pred_word)))
