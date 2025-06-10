@@ -1,5 +1,7 @@
 # wna
 Watch and Act - an adaptive routing OSOCR framework.
 
+Models can be found here 
+https://www.kaggle.com/models/object300/wna-zero
 
-Code, models and documentations will come after accepteance before publication. 
+documentations will come soon.
