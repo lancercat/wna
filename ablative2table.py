@@ -26,7 +26,7 @@ if __name__ == '__main__':
         allacr = [];
         add[k]={};
         for run in regdict[k]:
-            rdic=torch.load(os.path.join(root,"object310-rel",run,"ablruns.pt"));
+            rdic=torch.load(os.path.join(root,"object310-rel",run,"ablruns.pt"),weights_only=False);
             rr=extract_accrs(rdic);
             allacr+=rr;
             add[k][run]=rr;

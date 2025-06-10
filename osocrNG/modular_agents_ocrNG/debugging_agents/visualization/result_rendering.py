@@ -53,9 +53,12 @@ class neko_result_rendering_agent(neko_module_wrapping_agent):
         mdict= this.fake_mdict(tensor_proto_img,tdict,plabel);
         text_label=None
         if (this.text_label is not None):
-            try:
-                text_label = workspace.get(this.text_label);
-            except:
+            if (this.text_label in workspace.inter_dict):
+                try:
+                    text_label = workspace.get(this.text_label);
+                except:
+                    pass;
+            else:
                 pass;
         aaps=[];
         for i in range(len(pred_text)):

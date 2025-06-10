@@ -1,9 +1,7 @@
 import os.path
 
-from osocrNG.athena
-.common.quicklmdb import quick_lmdb
-from osocrNG.athena
-.common.quickptg1 import prepare_pt
+from osocrNG.athena.common.quicklmdb import quick_lmdb
+from osocrNG.athena.common.quickptg1 import prepare_pt
 
 
 def quick_dataset(langroot):
