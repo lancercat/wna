@@ -16,24 +16,25 @@ if __name__ == '__main__':
     cfg.arm_wandb(project="watch_and_control");
     mf=modf(cfg);
     af=agtf(cfg);
-    trdf=trdcfg(cfg)
     anchors = acfg();
+    data_partitions=trdcfg();
     modcfgdict, bogo_dict = {}, {};
-    trad, trqd, trm, tedd=datf.get_mk3_benchmark(cfg.data_root,trdf,DQN);
+    trad, trqd, trm, tedd=datf.get_mk3_benchmark_plus(cfg.data_root,data_partitions,DQN);
 
     modcfgdict, bogo_dict = mf.config_for_training(modcfgdict, bogo_dict, anchors, trm);
     modset = neko_module_opt_setNG();
     modset.arm_modules(modcfgdict, bogo_dict);
     modset.to(cfg.devices[0]);
-    modset.load("_E1_I100000");
     # modset.bfloat16();
 
     e=neko_environment(assets_dict={},queue_dict=trqd,modset=modset);
 
+    for a in trad:
+        trad[a]["agent"].start(trad[a]["params"], e);
+
     tac=af.get_testers({"main":tedd},anchors);
     tra=af.get_trainer(tac,anchors,DQN);
     info("starting");
-    tra.mount_environment({},e);
-    tra.eval();
+    tra.start_sync({},e)
     pass;
 

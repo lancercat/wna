@@ -14,7 +14,7 @@ if __name__ == '__main__':
         cfg=neko_platform_cfg(sys.argv[2]);
     else:
         cfg=neko_platform_cfg(None);
-    cfg.save_root=os.path.join("/run/media/lasercat/writebuffer/310-2/",os.path.basename(os.getcwd()));
+    # cfg.save_root=os.path.join("/run/media/lasercat/writebuffer/310-2/",os.path.basename(os.getcwd()));
 
 
     cfg.arm_wandb(project="watch_and_control");

@@ -85,36 +85,38 @@ class neko_abstract_mission_agent(neko_abstract_sync_agent):
         protodict = this.cache_protos(environment);
         torch.save(protodict,path);
 
-    def take_action_multibatch(this, _: neko_workspace, environment: neko_environment,bs=160):
+    def take_action_multibatch(this, _: neko_workspace, environment: neko_environment, bs=160):
 
-        protodict=this.cache_protos(environment);
+        protodict = this.cache_protos(environment);
+        trd = {};
+
         for test in this.tests[this.PARAM_test_benches]:
+            trd[test] = {}
             for r in this.reporters:
-                this.reporters[r].reset(test+this.variant,this.hasunk(test));
+                this.reporters[r].reset(test + this.variant, this.hasunk(test));
             d = this.test_data_holders[this.data_of_test(test)];
-            for i in range(0,len(d),bs):
-                aret=[];
-                aids=[];
-                for j in range(i,min(len(d),i+bs)):
-                    id={"id": j + 1};
+            for i in range(0, len(d), bs):
+                aret = [];
+                aids = [];
+                for j in range(i, min(len(d), i + bs)):
+                    id = {"id": j + 1};
                     ret = d.fetch_item(id);
-                    if(ret is not None):
+                    if (ret is not None):
                         aret.append(ret);
                         aids.append(id);
                 workspace = neko_workspace();
                 workspace.inter_dict[this.image_name] = [np.array(r[RN.IMAGE]) for r in aret];
-                workspace.inter_dict[this.id_name]=[id for id in aids];
-                if(RN.LABEL in aret[0]):
-                    workspace.inter_dict[this.text_label_name] = [r[RN.LABEL]for r in aret];
-                workspace=this.arm_cached_protos(workspace,protodict,test);
+                workspace.inter_dict[this.id_name] = [id for id in aids];
+                if (RN.LABEL in aret[0]):
+                    workspace.inter_dict[this.text_label_name] = [r[RN.LABEL] for r in aret];
+                workspace = this.arm_cached_protos(workspace, protodict, test);
 
                 this.tester.take_action(workspace, environment);
                 for r in this.reporters:
                     this.reporters[r].take_action(workspace, environment);
-            rd={};
             for r in this.reporters:
-                rd[r]=this.reporters[r].report(environment);
-            return rd;
+                trd[test][r] = this.reporters[r].report(environment);
+        return trd;
 
     def take_action(this, _: neko_workspace, environment: neko_environment):
         protodict=this.cache_protos(environment);

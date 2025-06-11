@@ -155,7 +155,7 @@ class neko_trainer_agent(neko_abstract_async_agent):
                 this.environment.modset.train_mode(tag);
         else:
             this.environment.modset.train_mode();
-    def eval(this,bs=160):
+    def eval(this,bs=32):
         this.eval_mode();
         rd=this.check(bs);
         this.train_mode();
