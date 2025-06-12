@@ -1,5 +1,5 @@
 import sys
-
+import os
 from loadout import modf,agtf,datf,acfg,trdcfg
 
 from neko_sdk.cfgtool.platform_cfg import neko_platform_cfg
@@ -14,6 +14,8 @@ if __name__ == '__main__':
     else:
         cfg=neko_platform_cfg(None);
     cfg.arm_wandb(project="watch_and_control");
+    cfg.save_root=os.path.join("/home/lasercat/smol/hydra_saves",os.path.basename(os.getcwd()));
+
     mf=modf(cfg);
     af=agtf(cfg);
     trdf=trdcfg(cfg)
