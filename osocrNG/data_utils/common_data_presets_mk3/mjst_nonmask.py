@@ -20,7 +20,7 @@ class mjst_mk3_data_factory(abstract_mk3_data_factory):
     @classmethod
     def get_eng_test_v1(cls,dataroot,v2h=-9):
         FNS=[get_iiit5k,get_SVT,get_cute,get_IC03_867,get_IC13_1015,get_IC15_2077,get_SVTP];
-        NMS=["IIIT5k","SVT","CUTE","IC03","IC13","IC15","SVTP"];
+        NMS=["IIIT5k"];
         metadict={
             "EN":
                   {"meta_path": os.path.join(dataroot, "dictsv2", "dab62cased"),
