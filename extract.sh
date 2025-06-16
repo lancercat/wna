@@ -26,9 +26,10 @@ mv old/* .
 rmdir *
 cd ~/ssddata
 cd abimjst/
- mv abimjst/* .
+mv abimjst/* ../
 rmdir *
 cd ../
+rmdir *
 tar -xzf ${DOWNLOAD}/310-rel.tgz -C ~/hydra_saves/
 cd ~/hydra_saves/
 mv 310*/* .; rmdir *;
