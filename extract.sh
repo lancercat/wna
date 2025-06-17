@@ -30,6 +30,10 @@ mv abimjst/* ../
 rmdir *
 cd ../
 rmdir *
+cd ~/ssddata/dictsv2/
+mv dictsv2/* .
+rmdir *
+cd ../
 tar -xzf ${DOWNLOAD}/310-rel.tgz -C ~/hydra_saves/
 cd ~/hydra_saves/
 mv 310*/* .; rmdir *;
