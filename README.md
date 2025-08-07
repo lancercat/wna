@@ -1,6 +1,6 @@
 # Watch and Act - an adaptive routing OSOCR framework.
-[wna-v1-2.pdf](https://github.com/user-attachments/files/21666605/wna-v1-2.pdf)
 
+![readme](https://github.com/user-attachments/assets/b283725b-a218-4ee2-9d11-bd3a924e35ab)
 
 
 ## Models can be found here 
