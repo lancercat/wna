@@ -12,3 +12,7 @@ https://www.kaggle.com/datasets/vsdf2898kaggle/osocrtraining
 
 https://www.kaggle.com/datasets/object300/mose-extra
 
+## GUI version (the live demo)
+https://github.com/lancercat/wna-live-ver
+
+With a 5-min video for step by step guide setting up for a new script (greek)
